@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday</title>
+</head>
+<body>
+
+    <h1 style="text-align: center;">Register your Birthday</h1>
+    <form action="/submit" method="post">
+        <b>Enter Name:</b>&nbsp;&nbsp;&nbsp;<input autocomplete="off" autofocus type="text" placeholder="Name" name="name">
+        <br><br>
+        <b>Enter Month:</b> <input autocomplete="off" autofocus type="text" placeholder="Month" name="month">
+        <br><br>
+        <b>Enter a day:</b>&nbsp;&nbsp; <input autocomplete="off" autofocus type="text" placeholder="Day" name="day">
+        <br><br><br>
+        <input type="submit" style="margin-left:150px;">
+    </form>
+    <div>
+        <h2>Registered data</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Month</th>
+                    <th>Day</th>
+                </tr>
+                <tbody>
+                    {% for registrant in registrants %}
+                    <tr>
+                        <form action="/deregister" method="get">
+                            <input type="hidden" name="id" value="{{ registrant[0] }}">
+                            <td>{{ registrant[1] }}</td>
+                            <td>{{ registrant[2] }}</td>
+                            <td>{{ registrant[3] }}</td>
+                            <td><input type = "submit" value="remove"></td>
+                        </form>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </thead>
+        </table>
+    </div>
+
+</body>
+</html>
